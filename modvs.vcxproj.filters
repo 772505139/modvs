@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="examples\main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mymodules\airline_ticket.cppm">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mymodules\database.cppm">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mymodules\employee.cppm">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\console_utf8.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\demo\test_Array.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\demo\test_Database.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\demo\test_Employee.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\demo\test_FunctionInvocation.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\demo\test_InitializerList.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\demo\test_Loop.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\demo\test_Optional.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\demo\test_Reference.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\demo\test_String.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\demo\test_switch.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\demo\test_ternary_operator.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\demo\test_ThreewayComparisonOperator.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\demo\test_userUI_console.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\demo\test_Vector.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\demo\testAll_Demos.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\myclasssrc\airline_ticket.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\myclasssrc\Database.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\myclasssrc\Employee.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\demo\test_Array.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\demo\test_FunctionInvocation.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\demo\test_InitializerList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\demo\test_Loop.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\demo\test_Optional.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\demo\test_Reference.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\demo\test_String.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\demo\test_switch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\demo\test_ternary_operator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\demo\test_ThreewayComparisonOperator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\demo\test_Vector.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\demo\testAll.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\console_utf8.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

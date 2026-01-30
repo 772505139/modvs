@@ -1,0 +1,96 @@
+用 SSH 最稳。你现在 `origin` 还是 HTTPS（`https://github.com/772505139/modvs`），按下面做即可把当前工程推上去（仓库名同为 `modvs`）。
+
+## 1) 生成 SSH key（如果你还没有）
+在 VS 的“终端”执行：
+
+```sh
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+一路回车即可（默认会生成到 `~/.ssh/id_ed25519`）。
+
+## 2) 把公钥添加到 GitHub
+查看公钥内容：
+
+```sh
+type %USERPROFILE%\.ssh\id_ed25519.pub
+```
+
+复制输出内容，打开 GitHub：
+- `Settings > SSH and GPG keys > New SSH key`
+- 粘贴保存
+
+## 3) 测试 SSH 是否通
+```sh
+ssh -T git@github.com
+```
+看到类似 “successfully authenticated” 就 OK。（首次会问是否信任指纹，输入 `yes`）
+
+## 4) 把远端从 HTTPS 改成 SSH
+你现在的 remote 是 `https://github.com/772505139/modvs`，改为 SSH：
+
+```sh
+git remote set-url origin git@github.com:772505139/modvs.git
+git remote -v
+```
+
+确认 `origin` 显示 `git@github.com:772505139/modvs.git`。
+
+## 5) 推送
+```sh
+git push -u origin master
+```
+
+---
+
+### 你提到“远端建立同名仓库”
+VS UI 创建远端有时会失败，但**只要 GitHub 上已经有 `modvs` 仓库**，上述步骤就能推上去。  
+如果 GitHub 上还没建：先在网页手动创建一个空仓库 `modvs`（不要初始化 README/License/.gitignore，避免首推需要处理历史），再执行第 4/5 步。
+
+如果你在第 3 步 `ssh -T` 仍失败，把输出贴出来（常见是 key 没加到GitHub 或被代理拦截）。
+
+
+
+
+你两套 SSH 身份**已经隔离成功**（`ssh -T git@github-772505139` 显示 Hi 772505139）。但 `git push` 仍然用的是 `414656603`，原因基本只有一个：
+
+> 你这个仓库的 `origin` **仍然是** `git@github.com:772505139/modvs.git`（默认 Host），而不是 `git@github-772505139:...`（别名 Host）。  
+> 所以 git 会按 `Host github.com` 那段配置走 `414656603` 的 key。
+
+按下面做一次即可修正（在 `D:\C++\MyPJ_VS\modvs`）：
+
+## 1) 把 `origin` 改成别名 Host（关键）
+```powershell
+git remote set-url origin git@github-772505139:772505139/modvs.git
+git remote -v
+```
+
+你要看到：
+- `origin  git@github-772505139:772505139/modvs.git (push)`
+- `origin  git@github-772505139:772505139/modvs.git (fetch)`
+
+## 2) 再推
+```powershell
+git push -u origin master
+```
+
+---
+
+## 3) 如果仍失败：强制让 git 显示它到底连的是哪个 Host/用哪个 key
+```powershell
+GIT_SSH_COMMAND="ssh -v" git push -u origin master
+```
+把输出里出现的 `Offering public key:` 和最终连接的 `github.com` / `github-772505139` 片段贴出来即可定位。
+
+---
+
+### 你要保留 VSCode 用 `414656603` 的原则
+- VSCode 里仓库 remote 用 `git@github.com:...` → 走 `414656603`
+- 这个 `modvs` 仓库 remote 用 `git@github-772505139:...` → 走 `772505139`
+
+现在只差把 `modvs` 的 `origin` 真的切到别名即可。
+
+
+
+
+

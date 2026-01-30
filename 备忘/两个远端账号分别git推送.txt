@@ -1,0 +1,92 @@
+要两套 GitHub 账号在同一台机器共存且互不干扰，最稳的是 **SSH `Host` 别名 + 不同 `IdentityFile`**。核心思路：
+
+- `git@github.com:...` 永远走 **账号 A**（比如你 VSCode 常用的 `414656603`）
+- `git@github-772:...` 走 **账号 B**（比如 `772505139`），只给特定仓库用
+
+下面按步骤做（PowerShell）。
+
+---
+
+## 1) 准备两把 SSH key（各绑定各自 GitHub 账号）
+
+先看你现在有哪些 key 文件：
+```powershell
+dir $env:USERPROFILE\.ssh
+```
+
+如果你还没有给 `772505139` 单独的 key，就生成一把（文件名用专用的，避免未来混乱）：
+```powershell
+ssh-keygen -t ed25519 -C "772505139" -f $env:USERPROFILE\.ssh\id_ed25519_772505139
+type $env:USERPROFILE\.ssh\id_ed25519_772505139.pub
+```
+
+把打印出来的公钥内容添加到 **GitHub 的 `772505139` 账号**：
+`Settings > SSH and GPG keys > New SSH key`
+
+你现有那把已认证为 `414656603`（`ssh -T git@github.com` 显示 Hi 414656603），保持不动即可。
+
+---
+
+## 2) 配置 `~/.ssh/config`（用 Host 别名隔离）
+
+创建/编辑文件：`%USERPROFILE%\.ssh\config`
+
+内容示例如下（把 `IdentityFile` 改成你实际私钥文件名；第二段用刚生成的）：
+
+```
+# 默认走 414656603（给 VSCode/其它仓库用）
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes
+
+# 专门给 772505139 用的别名
+Host github-772505139
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519_772505139
+  IdentitiesOnly yes
+```
+
+> 关键是 `Host github-772505139`：它只是本机别名，但会强制使用对应的 `IdentityFile`。
+
+---
+
+## 3) 验证两套身份是否隔离成功
+
+验证默认（应为 414656603）：
+```powershell
+ssh -T git@github.com
+```
+
+验证别名（应为 772505139）：
+```powershell
+ssh -T git@github-772505139
+```
+
+---
+
+## 4) 让当前仓库 `modvs` 固定用 `772505139` 推送
+
+你现在 IDE 状态里 `origin` 还是 HTTPS：`https://github.com/772505139/modvs`。把它改为“别名 SSH”：
+
+```powershell
+cd D:\C++\MyPJ_VS\modvs
+git remote set-url origin git@github-772505139:772505139/modvs.git
+git remote -v
+git push -u origin master
+```
+
+这样之后：
+- 这个仓库永远用 `github-772505139` → 永远用 `772505139` 的 key
+- 你在 VSCode 里其它仓库继续用 `git@github.com:414656603/...` → 继续走 `414656603`
+
+---
+
+## 若你不确定 `414656603` 对应的私钥文件名
+把下面输出贴出来（只看文件名，不涉及敏感内容），我帮你把 `config` 里的第一段 `IdentityFile` 精确到你机器上的文件名：
+
+```powershell
+dir $env:USERPROFILE\.ssh
+```

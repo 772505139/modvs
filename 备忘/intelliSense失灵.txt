@@ -1,0 +1,40 @@
+﻿代码自动补全（IntelliSense / Completion List）“失灵”通常分三类：**没触发**、**被关闭/被切换到 Tab-only**、**C++ IntelliSense 引擎没正常工作（数据库/模块/工程配置）**。你现在用的是 C++ 且有 `import std;`（模块），优先按下面顺序排查。
+
+## 1) 先确认不是“没触发/触发方式变了”
+- 手动触发补全：在编辑器里按 **`Ctrl+Space`**（命令：__编辑 > IntelliSense > 完成单词__）。
+- 手动列出成员：输入 `str3.` 后按 **`Ctrl+J`**（命令：__编辑 > IntelliSense > 列出成员__）。
+
+如果手动触发能弹出，说明引擎还在，只是“自动弹出策略”或被切到 Tab-only。
+
+## 2) 检查是否切换到了“仅 Tab 的 IntelliSense”
+VS 有个切换键会让“自动补全弹窗”看起来像坏了：
+- 切换自动/仅 Tab：**`Ctrl+Alt+Space`**（__编辑 > IntelliSense > 在自动和仅限 Tab 的 IntelliSense 完成之间切换__）
+
+按一次试试，再输入 `std::` 或 `myString.` 看是否恢复自动弹出。
+
+## 3) 确认 C++ IntelliSense 没被关闭（最常见的开关）
+到：__工具 > 选项 > 文本编辑器 > C/C++ > IntelliSense__  
+确认这些选项为启用状态（名称可能略有差异，但核心是这几个）：
+- __启用 IntelliSense__（`languages.cpp.intelliSense.enableIntelliSense`）
+- （如果你有独立文件场景）__为独立文件启用 IntelliSense__（`languages.cpp.intelliSense.singleFile.enableSingleFileISense`）
+- （你用模块）__为 C++20 模块启用 IntelliSense__（`languages.cpp.intelliSense.enableModules`）
+
+> 你当前文件在项目里（`src\demo\test_String.cpp`），但如果它被当成“杂项文件/未纳入项目”，也会影响补全质量。
+
+## 4) C++20 模块 + `import std;` 的典型坑
+`import std;` 依赖工具链/库模块支持。如果模块支持不完整，常见表现就是补全、跳转、错误波浪线都不正常。
+- 确认项目使用支持模块的工具集/标准（例如 C++20/23）。
+- 若只在包含 `import std;` 的文件里失灵，基本就是模块 IntelliSense 没启用或模块接口未生成/未被索引。
+
+## 5) 重建 IntelliSense/浏览数据库（卡死或长期不更新时有效）
+到：__工具 > 选项 > 文本编辑器 > C/C++ > 浏览/导航__  
+- 勾选一次：__下次加载解决方案时重新创建代码浏览数据库__（`languages.cpp.intelliSense.browsingNavigation.recreateDatabase`）
+- 然后**关闭并重新打开** VS / 重新加载解决方案。
+
+也可以在菜单里找：__IntelliSense > 刷新浏览数据库__（如果你的 VS 菜单提供该入口）。
+
+## 6) 我需要你补两条信息来精准定位
+1. 是**所有文件**都不补全，还是只在 `test_String.cpp` 这类含 `import std;` 的文件里？
+2. 输出窗口（__输出__）里有没有 IntelliSense 相关报错？你可以把 __输出__ 的相关片段贴一下（或者告诉我你刚刚是否做过“切换平台/切换配置/升级工具集”等操作）。
+
+如果你愿意，我也可以根据你当前解决方案的具体配置（项目是否启用模块、标准版本、工具集）给出针对性的修复步骤。

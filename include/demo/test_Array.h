@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 namespace demo {
     //extern int myArray1[3];

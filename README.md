@@ -25,7 +25,7 @@
   - 然后依次执行各类测试函数（如 `test_Array()`、`test_vector()`、`RunTest_Optional()` 等）
 
 ## Windows 控制台 UTF-8 输出
-提供了一个工具函数用于尽量让控制台以 UTF-8 显示输出：
+提供了一个工具函数用于尽量让控制台以 UTF-8 显示输出：【这是vscode里的实现，vs没用】
 
 - 头文件：`src/console_utf8.h`
 - 实现：`src/console_utf8.cpp`
@@ -36,6 +36,8 @@
 - `SetConsoleCP(CP_UTF8);`
 
 ### 推荐（VS/MSVC）避免中文乱码的方式
+【加这玩意的原因是所有的源码文件.cpp、.cppm、.h等文件的编码字符集不统一，都统一
+成utf-8就不用加这条命令了！】【或者你懒得统一，就加上这条命令，也能解决乱码】
 在 Visual Studio 项目中添加编译选项：
 - `项目属性 > C/C++ > 命令行 > 其他选项`：加入 `/utf-8`
 

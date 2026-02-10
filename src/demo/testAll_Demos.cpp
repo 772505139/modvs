@@ -166,8 +166,9 @@ int RunTestAllDemos()
     cout << "现在测试initializer_list相关内容" << endl;
     Runtest_InitializerList();
 
-    cout << "现在测试string相关内容" << endl;
+    cout << "******************现在测试string相关内容*****************b" << endl;
     Runtest_String();
+    cout << "******************现在测试string相关内容*****************e" << endl;
 
     cout << "现在测试AirlineTicket模块相关内容" << endl;
     // 【基于栈】进入作用域：自动构造和析构AirlineTicket对象

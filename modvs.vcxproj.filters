@@ -125,9 +125,6 @@
     <ClInclude Include="src\console_utf8.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="demo\test_FunctionInvocation.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
@@ -136,5 +133,6 @@
   <ItemGroup>
     <Text Include="备忘\git.txt" />
     <Text Include="备忘\两个远端账号分别git推送.txt" />
+    <Text Include="备忘\intelliSense失灵.txt" />
   </ItemGroup>
 </Project>

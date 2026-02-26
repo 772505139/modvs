@@ -183,6 +183,7 @@
     <ClCompile Include="src\demo\testAll_Demos.cpp" />
     <ClCompile Include="src\demo\test_Array.cpp" />
     <ClCompile Include="src\demo\test_Database.cpp" />
+    <ClCompile Include="src\demo\test_DLL.cpp" />
     <ClCompile Include="src\demo\test_Employee.cpp" />
     <ClCompile Include="src\demo\test_FunctionInvocation.cpp" />
     <ClCompile Include="src\demo\test_InitializerList.cpp" />
@@ -216,6 +217,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".github\copilot-instructions.md" />
+    <None Include="lib\C++说明.pdf" />
+    <None Include="lib\common-decrypt-2.5.0.dll" />
+    <None Include="lib\common-endecrypt-2.5.0.dll" />
+    <None Include="lib\COMMONSM4.dll" />
+    <None Include="lib\CommonSM4.net.dll" />
+    <None Include="lib\IKVM.OpenJDK.Charsets.dll" />
+    <None Include="lib\IKVM.OpenJDK.Core.dll" />
+    <None Include="lib\IKVM.OpenJDK.Security.dll" />
+    <None Include="lib\IKVM.OpenJDK.Util.dll" />
+    <None Include="lib\IKVM.OpenJDK.XML.Crypto.dll" />
+    <None Include="lib\IKVM.Runtime.dll" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>

@@ -24,8 +24,15 @@ int main()
     //测试Database类
     Test_Database();
 
+
+    //测试DLL调用
+    runTestDLL();
+
+
     //测试用户界面（控制台版）
     Test_UserUI_Console();
+
+
 
     return 0;
 }

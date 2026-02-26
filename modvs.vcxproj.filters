@@ -84,6 +84,9 @@
     <ClCompile Include="src\myclasssrc\Employee.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\demo\test_DLL.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\demo\test_Array.h">
@@ -129,6 +132,17 @@
   <ItemGroup>
     <None Include="README.md" />
     <None Include=".github\copilot-instructions.md" />
+    <None Include="lib\COMMONSM4.dll" />
+    <None Include="lib\CommonSM4.net.dll" />
+    <None Include="lib\C++说明.pdf" />
+    <None Include="lib\common-decrypt-2.5.0.dll" />
+    <None Include="lib\common-endecrypt-2.5.0.dll" />
+    <None Include="lib\IKVM.OpenJDK.Charsets.dll" />
+    <None Include="lib\IKVM.OpenJDK.Core.dll" />
+    <None Include="lib\IKVM.OpenJDK.Security.dll" />
+    <None Include="lib\IKVM.OpenJDK.Util.dll" />
+    <None Include="lib\IKVM.OpenJDK.XML.Crypto.dll" />
+    <None Include="lib\IKVM.Runtime.dll" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="备忘\git.txt" />
